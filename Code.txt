@@ -1,0 +1,253 @@
+package SelectElements;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Riskcovry {
+	public static void main(String[] args) throws IOException {
+	
+	  System.setProperty("Webdriver.chrome.driver", "/Introduction/resource/driver/chromedriver.exe");
+      WebDriver driver =new ChromeDriver();
+      driver.manage().window().maximize();
+      driver.get("https://cover.riskcovry.com/privacy-policy");
+     /* 
+      WebElement bg = driver.findElement(By.cssSelector("h2.privacy-policy-head"));
+      System.out.println("data:"+ bg.getText());
+      
+      WebElement desc1 = driver.findElement(By.cssSelector("p.description"));
+      System.out.println("data:"+ desc1.getText());
+      
+     // driver.findElement(By.xpath("//h2[@class='privacy-policy-head']")[2]).getText();
+      System.out.println("data:"+ bg.getText());
+      
+      
+      */
+      
+      String[] itemsneeded = {"Background", "Customer Data","Consent","Purpose of Collection and Use of Customer Data","Disclosure of Customer Data","Reasonable Security Practices and Procedures","Suspension of Account, Removal and Modification of Customer Data","External Links","Changes and Updates","Redressal of Grievances","Governing Agreements and Law"};
+    	List itemsneededlist =Arrays.asList(itemsneeded); 
+      
+      List<WebElement> bgr = driver.findElements(By.cssSelector("h2.privacy-policy-head"));
+      WebElement desc1 = driver.findElement(By.xpath("//h2[@class='privacy-policy-head']/following-sibling::p"));
+      
+      List<WebElement> desc = driver.findElements(By.cssSelector("p.description"));
+   
+      String str = "Welcome Riscovry ... proivacy content";
+      BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\output\\test.txt"));
+      writer.write(str);
+      writer.newLine();
+         
+      
+         
+         
+      for (int i=0;i<bgr.size();i++)
+      {
+    	  String gfm =null;
+    	 String  gfm1 =null;
+    	 String  gfm2 =null;
+    	 String  gfm3 =null;
+    	  String listitem = bgr.get(i).getText();
+    	  
+    		if (itemsneededlist.contains(listitem)) {
+    			System.out.println("Heading :" + bgr.get(i).getText());
+    			writer.write("Heading :" + bgr.get(i).getText());
+    			 writer.newLine();
+    			//Background
+               if (bgr.get(i).getText().contains("Background")) {
+    			
+    				
+    				 gfm = driver.findElement(By.xpath("//*[ text()='Background']/following-sibling::p")).getText();
+        			System.out.println("Description Detail 1 :" + gfm);
+        			writer.write("Description Detail 1 :" + gfm);
+        			 writer.newLine();
+        			//writer.close();
+               }
+               
+              
+                 
+               
+               
+             //Customer Data
+               if (bgr.get(i).getText().contains("Customer Data"))  {
+    			
+    				if (i==1)  {
+    				 gfm = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[3]/div/p")).getText();
+        			System.out.println("Description Detail 1 :" + gfm);
+        			writer.write("Description Detail 1 :" + gfm);
+        			writer.newLine();
+    				}
+               }
+               
+               //consent
+    			if (bgr.get(i).getText().contains("Consent")) {
+    			
+    				
+    				 gfm = driver.findElement(By.xpath("//*[ text()='Consent']/following-sibling::p")).getText();
+        			System.out.println("Description Detail 1 :" + gfm);
+        			writer.write("Description Detail 1 :" + gfm);
+        			writer.newLine();
+        					
+        			 gfm1 = driver.findElement(By.xpath("//*[ text()='Consent']/following-sibling::p[2]")).getText();
+        			System.out.println("Description Detail 2 :" + gfm1);
+        			writer.write("Description Detail 2 :" + gfm1);
+        			writer.newLine();
+        					
+        			 gfm2 = driver.findElement(By.xpath("//*[ text()='Consent']/following-sibling::p[3]")).getText();
+        			System.out.println("Description Detail 3 :" + gfm2);
+        			writer.write("Description Detail 3 :" + gfm2);
+        			writer.newLine();
+        					
+    			}
+    			
+    			//purpose of Collection and Use of Customer Data
+    			if((bgr.get(i).getText().contains("Purpose of Collection and Use of Customer Data")))  {
+    				 
+    				 gfm = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[5]/div/p[1]")).getText();
+        			System.out.println("Description Detail 1 :" + gfm);
+        			writer.write("Description Detail 1 :" + gfm);
+        			writer.newLine();
+        					
+        			 gfm2 = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[5]/div/ul")).getText();
+        			System.out.println("Description Detail 2 :" + gfm2);
+        			writer.write("Description Detail 2 :" + gfm2);
+        			writer.newLine();
+        					
+        			 gfm2 = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[5]/div/p[2]")).getText();
+         			System.out.println("Description Detail 3 :" + gfm2);
+         			writer.write("Description Detail 3 :" + gfm2);
+         			writer.newLine();
+    			}
+    			
+    			
+    			//Disclosure of Customer Data
+    			if((bgr.get(i).getText().contains("Disclosure of Customer Data")))  {
+    				 
+    				 gfm = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[6]/div/p")).getText();
+        			System.out.println("Description Detail 1 :" + gfm);
+        			writer.write("Description Detail 1 :" + gfm);
+        			writer.newLine();
+        					
+        			 gfm2 = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[6]/div/ul")).getText();
+        			System.out.println("Description Detail 2 :" + gfm2);
+        			writer.write("Description Detail 2 :" + gfm2);
+        			writer.newLine();
+        					
+    			}
+    			
+    			//Reasonable Security Practices and Procedures
+    					
+    			if((bgr.get(i).getText().contains("Reasonable Security Practices and Procedures")))  {
+   				 
+   				 gfm = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[7]/div/p[1]")).getText();
+       			System.out.println("Description Detail 1 :" + gfm);
+       			writer.write("Description Detail 1 :" + gfm);
+       			writer.newLine();
+       			
+       			 gfm2 = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[7]/div/p[2]")).getText();
+       			System.out.println("Description Detail 2 :" + gfm2);
+       			writer.write("Description Detail 2 :" + gfm2);
+       			writer.newLine();
+       					
+       			
+       			gfm3 = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[7]/div/p[3]")).getText();
+       			System.out.println("Description Detail 3 :" + gfm3);
+       			writer.write("Description Detail 3 :" + gfm3);
+       			writer.newLine();
+       					
+   			}
+    			
+    			//Suspension of Account, Removal and Modification of Customer Data
+				
+    			if((bgr.get(i).getText().contains("Suspension of Account, Removal and Modification of Customer Data")))  {
+   				 
+   				 gfm = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[8]/div/p[1]")).getText();
+       			System.out.println("Description Detail 1 :" + gfm);
+       			writer.write("Description Detail 1 :" + gfm);
+       			writer.newLine();
+       			
+       			 gfm2 = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[8]/div/p[2]")).getText();
+       			System.out.println("Description Detail 2 :" + gfm2);
+       			writer.write("Description Detail 2 :" + gfm2);
+       			writer.newLine();
+       			
+       		
+   			}
+    		//External links
+    			if((bgr.get(i).getText().contains("External Links")))  {
+      				 
+      				 gfm = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[9]/div/p")).getText();
+          			System.out.println("Description Detail 1 :" + gfm);
+          			writer.write("Description Detail 1 :" + gfm);
+          			writer.newLine();
+          	 		
+      			}
+    			
+    			//Changes and Updates
+    			if((bgr.get(i).getText().contains("Changes and Updates")))  {
+      				 
+      				 gfm = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[10]/div/p[1]")).getText();
+          			System.out.println("Description Detail 1 :" + gfm);
+          			writer.write("Description Detail 1 :" + gfm);
+          			writer.newLine();
+          			
+          			 gfm2 = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[10]/div/p[2]")).getText();
+          			System.out.println("Description Detail 2 :" + gfm2);
+          			writer.write("Description Detail 2 :" + gfm2);
+          			writer.newLine();
+          			
+          		
+      			}
+    			
+    			//Redressal of Grievances
+    			if((bgr.get(i).getText().contains("Redressal of Grievances")))  {
+      				 
+      				 gfm = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[11]/div/p")).getText();
+          			System.out.println("Description Detail 1 :" + gfm);
+          			writer.write("Description Detail 1 :" + gfm);
+          			writer.newLine();
+          		
+          
+      			}
+    			
+    			//Governing Agreements and Law
+    			if((bgr.get(i).getText().contains("Governing Agreements and Law")))  {
+      				 
+      				 gfm = driver.findElement(By.xpath("/html/body/app-root/app-privacy-policy/div/div[12]/div/p")).getText();
+          			System.out.println("Description Detail 1 :" + gfm);
+          			writer.write("Description Detail 1 :" + gfm);
+          			writer.newLine();
+          		
+          
+      			}
+    			
+    			
+    		}
+          
+     	
+     		
+     	
+     	
+     	
+     	
+      }
+      
+      writer.close();
+      driver.quit();
+  
+}
+
+	
+	
+}
